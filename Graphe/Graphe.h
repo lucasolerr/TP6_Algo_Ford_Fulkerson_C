@@ -5,8 +5,9 @@
 #include <stdlib.h>
 
 typedef struct Arrete {
-    int s1, s2, poids, couleur;
-    struct Arrete* next;
+    int capacite;
+    int flot
+
 } Arrete;
 
 
@@ -28,8 +29,8 @@ typedef struct Graphe
 {
     int orientation;
     int ordre;
-    char* sommets;
-    int** matriceAdj;
+    pSommet sommets;
+    Arrete** matriceAdj;
 } Graphe;
 
 // creer le graphe

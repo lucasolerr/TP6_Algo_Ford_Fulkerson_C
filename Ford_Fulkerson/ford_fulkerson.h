@@ -1,0 +1,6 @@
+#ifndef TP6_ALGO_FORD_FULKERSON_C_FORD_FULKERSON_H
+#define TP6_ALGO_FORD_FULKERSON_C_FORD_FULKERSON_H
+
+#include "../Graphe/Graphe.h"
+
+#endif
