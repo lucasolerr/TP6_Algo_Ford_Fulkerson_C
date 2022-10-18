@@ -16,13 +16,15 @@ Graphe* lire_graphe(char *nomFichier) {
 
     graphe = (Graphe*) malloc(sizeof(Graphe));
 
-    graphe->sommets = (pSommet) malloc(ordre * sizeof(pSommet));
-
-
+    graphe->sommets = (pSommet*) malloc(ordre * sizeof(pSommet*));
 
     for (int i = 0; i < ordre; i++) {
-        fscanf(ifs, " %c", &graphe->sommets[i].valeur);
+        graphe->sommets[i] = malloc(sizeof(pSommet));
+        fscanf(ifs, "%d", &graphe->sommets[i]->valeur);
     }
+
+    graphe->sommetInitial = graphe->sommets[0]->valeur;
+    graphe->sommetFinal = graphe->sommets[ordre - 1]->valeur;
 
 
     graphe->ordre = ordre;
@@ -35,6 +37,8 @@ Graphe* lire_graphe(char *nomFichier) {
     for (int i = 0; i < ordre; i++) {
         for (int j = 0; j < ordre; j++) {
             fscanf(ifs, "%d", &graphe->matriceAdj[i][j].capacite);
+            graphe->matriceAdj[i][j].flot = 0;
+            graphe->matriceAdj[i][j].capaciteResiduelle = graphe->matriceAdj[i][j].capacite - graphe->matriceAdj[i][j].flot;
         }
     }
 
@@ -49,7 +53,7 @@ void graphe_afficher(Graphe *graphe) {
     printf("ordre = %d\n", graphe->ordre);
 
     for (int i = 0; i < graphe->ordre; i++) {
-        printf("%c", graphe->sommets[i].valeur);
+        printf("%d ", graphe->sommets[i]->valeur);
     }
 
     printf("\nMatrice d'adjacence :\n");

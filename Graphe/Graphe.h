@@ -6,7 +6,8 @@
 
 typedef struct Arrete {
     int capacite;
-    int flot
+    int flot;
+    int capaciteResiduelle;
 
 } Arrete;
 
@@ -16,9 +17,10 @@ typedef struct Arrete {
 struct Sommet
 {
     //numéro du sommet / Lettre du sommet
-    char valeur;
+    int valeur;
     //si le sommet est marqué = 1 sinon 0
     char couleur;
+    int predecesseur;
 };
 
 /* Alias de pointeur sur un Sommet */
@@ -29,8 +31,11 @@ typedef struct Graphe
 {
     int orientation;
     int ordre;
-    pSommet sommets;
+    pSommet* sommets;
     Arrete** matriceAdj;
+    int sommetInitial;
+    int sommetFinal;
+
 } Graphe;
 
 // creer le graphe
